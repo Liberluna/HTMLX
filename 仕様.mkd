@@ -1,0 +1,83 @@
+# 仕様
+
+暫定
+
+独自のタグや属性をサポート
+
+<script src="./runtime/htmlx.js" defer></script>これで読み込み
+
+## 現状サポート　タグ
+
+boxタグ
+
+divの様なタグですが、flex(横並び)となります。
+```html
+<box>
+    <p>111</p>
+    <p>222</p>
+</box>
+```
+
+
+## 現状サポート 属性
+
+全ての要素にhref属性をサポート
+
+```html
+<div href="/test"></div>
+<img src="./hoge.png" href="/hoge">
+```
+
+hover時、及びhoverを外した時にjavascriptを実行
+
+```html
+<div class="bg" onhover="alert('hover!')" onhoverout="alert('hoverout!')">
+    <a href="https://google.com" target="_self">google</a>
+</div>
+```
+
+スクロールの簡易実装 及び　テンプレートデザイン
+
+scroll="x" scroll="y" scroll="xy"
+
+```html
+<div scroll="x">
+    aaaaaaaaaaaaaaaaaaaスクロール!!aaaaaaaaaaaaaaaaaa
+</div>
+```
+//テンプレートデザイン機能未実装
+
+size属性　任意のfontSizeを指定可能。
+
+```html 
+<p size="10px">10px desu</p>
+<p size="1.5rem">1.5rem desu</p>
+```
+
+animation属性 
+
+anime="x-rotate 1s ease-in-out infinite"　通常のcssプロパティ animation:と同じように指定できます。
+
+x-アニメーション名　はデフォルトで用意されたアニメーション
+
+//アニメーション名を纏める
+
+```
+<p anime="x-rotate 1s ease-in-out infinite"></p>
+```
+
+emoji属性
+絵文字の表示を最適化
+```html
+<p emoji>🤣</p>
+```
+
+CSSを属性名で簡単に設定出来ます。
+css:{CSSのproperty名}="{値}"
+
+```html
+<p css:color="blue">blue</p>
+```
+
+#### ToDo
+Referenceと仕様と属性値等を纏める

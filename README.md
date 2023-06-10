@@ -4,3 +4,6 @@ defined by the developer(The people behind this project) in **HTML**,
 and to create *new* tags and attributes.
 
 **HTMLX** support any *framework*.
+
+## for Liberluna 
+LiberChat用に使用するかもしれない。

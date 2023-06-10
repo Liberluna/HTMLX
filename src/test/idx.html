@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../runtime/htmlx.js" defer></script>
+</head>
+
+<body>
+    <div href="https://google.com" target="_blank">google!</div>
+
+    <box class="bg" onhover="document.getElementById('test_a').innerHTML = 'hoge'" onhoverout="document.getElementById('test_a').innerHTML = 'hogoogle'">
+        <a href="https://google.com" target="_self" id="test_a">google!</a>
+    </box>
+
+    <div class="schroller" scroll="x">
+        aaaaaaaaaaaaaaaaaaaスクロール!!aaaaaaaaaaaaaaaaaa
+    </div>
+
+    <box size="18px" anime="x-rotate 1s ease-in-out infinite" class="emojin" emoji>😁</box>
+
+    <div css:color="blue">
+        css属性
+    </div>
+
+    <style>
+        .bg {
+            background-color: red;
+        }
+        
+        .schroller {
+            width: 400px;
+            height: 50px;
+        }
+    </style>
+</body>
+
+</html>
