@@ -144,7 +144,7 @@ function HTMLX_compile() {
         md = md.replace(/^######\s+(.*)$/gm, '<t6>$1</t6>')
 
         md = md.replace(/\n/g, '<br>')
-        
+
         return md
     }
 
@@ -233,6 +233,10 @@ function HTMLX_init() {
                 100% {
                     transform: scale(1.1)
                 }
+            }
+
+            [circle] {
+                border-radius: 50%
             }
         </style>
     `; // 後でminify
