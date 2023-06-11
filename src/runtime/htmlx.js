@@ -117,7 +117,6 @@ function HTMLX_compile() {
     // markdown
 
     function convertMark(md) {
-        md = md.replace(/\n/g, '<br>')
         md = md.replace(/^\s+/gm, '')
 
         md = md.replace(/^\s*---\s*$/gm, '<hr>')
@@ -144,6 +143,8 @@ function HTMLX_compile() {
         md = md.replace(/^#####\s+(.*)$/gm, '<t5>$1</t5>')
         md = md.replace(/^######\s+(.*)$/gm, '<t6>$1</t6>')
 
+        md = md.replace(/\n/g, '<br>')
+        
         return md
     }
 
