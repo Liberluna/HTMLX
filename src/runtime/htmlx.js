@@ -117,9 +117,12 @@ function HTMLX_compile() {
     // markdown
 
     function convertMark(md) {
+        md = md.replace(/\n/g, '<br>')
+        md = md.replace(/^\s+/gm, '')
+
         md = md.replace(/^\s*---\s*$/gm, '<hr>')
         md = md.replace(/^\s*___\s*$/gm, '<hr>')
-        md = md.replace(/^\s*\*\*\*\s*$/gm, '<hr>')
+        md = md.replace(/^\s*\*\*\*\s*$/gm, '<hr>') //後でstyle充てる
 
         md = md.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>')
         md = md.replace(/\*\*(?!\*)(.*?)\*\*/g, '<strong>$1</strong>')
@@ -134,7 +137,6 @@ function HTMLX_compile() {
 
         md = md.replace(/`([^`]+)`/g, '<code>$1</code>')
 
-        // ヘッダーの変換
         md = md.replace(/^#\s+(.*)$/gm, '<t1>$1</t1>')
         md = md.replace(/^##\s+(.*)$/gm, '<t2>$1</t2>')
         md = md.replace(/^###\s+(.*)$/gm, '<t3>$1</t3>')
