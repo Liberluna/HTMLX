@@ -82,32 +82,74 @@ function HTMLX_compile() {
     }
 
     // css:Property=Value
-    let csss = document.querySelectorAll("*"); //css:から始まるモノのみに変更
+    let elements = document.getElementsByTagName("*");
 
-    let CSSprops = []
-    let CSSvalues = []
+    let CSSprops = [];
+    let CSSvalues = [];
 
-    for (let i = 0; i < csss.length; i++) {
-        let element = csss[i]
-        let attributes = Array.from(element.attributes)
+    for (let i = 0; i < elements.length; i++) {
+        let element = elements[i];
+        let attributes = Array.from(element.attributes);
 
         for (let j = 0; j < attributes.length; j++) {
-            let attribute = attributes[j]
+            let attribute = attributes[j];
 
             if (attribute.name.startsWith('css:')) {
-                let propName = attribute.name.substring(4)
-                let propValue = attribute.value
+                let propName = attribute.name.substring(4);
+                let propValue = attribute.value;
 
-                CSSprops.push(propName)
-                CSSvalues.push(propValue)
-            }
-
-            for (let k = 0; k < CSSprops.length; k++) {
-                element.style[CSSprops[k]] = CSSvalues[k]
+                CSSprops.push(propName);
+                CSSvalues.push(propValue);
             }
         }
+
+        for (let k = 0; k < CSSprops.length; k++) {
+            if (element.style.hasOwnProperty(CSSprops[k])) {
+                element.style[CSSprops[k]] = CSSvalues[k];
+            }
+        }
+
+        CSSprops = [];
+        CSSvalues = [];
     }
 
+
+    // markdown
+
+    function convertMark(md) {
+        md = md.replace(/^\s*---\s*$/gm, '<hr>')
+        md = md.replace(/^\s*___\s*$/gm, '<hr>')
+        md = md.replace(/^\s*\*\*\*\s*$/gm, '<hr>')
+
+        md = md.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>')
+        md = md.replace(/\*\*(?!\*)(.*?)\*\*/g, '<strong>$1</strong>')
+        md = md.replace(/\*(?!\*)(.*?)\*/g, '<em>$1</em>')
+        md = md.replace(/--(.*?)--/g, '<del>$1</del>')
+
+        md = md.replace(/!\[([^\]]+)\]\(([^)]+)\)/g, '<img alt="$1" src="$2">')
+
+        md = md.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+
+        md = md.replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>')
+
+        md = md.replace(/`([^`]+)`/g, '<code>$1</code>')
+
+        // ヘッダーの変換
+        md = md.replace(/^#\s+(.*)$/gm, '<t1>$1</t1>')
+        md = md.replace(/^##\s+(.*)$/gm, '<t2>$1</t2>')
+        md = md.replace(/^###\s+(.*)$/gm, '<t3>$1</t3>')
+        md = md.replace(/^####\s+(.*)$/gm, '<t4>$1</t4>')
+        md = md.replace(/^#####\s+(.*)$/gm, '<t5>$1</t5>')
+        md = md.replace(/^######\s+(.*)$/gm, '<t6>$1</t6>')
+
+        return md
+    }
+
+    let markdowns = m.getQ('[markdown]')
+
+    for (let i = 0; i < markdowns.length; i++) {
+        markdowns[i].innerHTML = convertMark(markdowns[i].innerHTML)
+    }
 }
 
 function HTMLX_init() {
@@ -121,9 +163,45 @@ function HTMLX_init() {
                 display: flex
             }
 
+            [br],[BR] {
+                flex-wrap: wrap
+            }
+
             a, a:visited {
                 color: inherit
             }
+
+            t1,t2,t3,t4,t5,t6 {
+                font-weight: bold
+            }
+
+            /*h1~h6*/
+              t1 {
+                font-size: 2em
+              }
+              
+              t2 {
+                font-size: 1.5em
+              }
+              
+              t3 {
+                font-size: 1.17em
+              }
+              
+              t4 {
+                font-size: 1em
+              }
+              
+              t5 {
+                font-size: 0.83em
+              }
+              
+              t6 {
+                font-size: 0.67em
+              }
+              
+
+            /*animarions*/
 
             @keyframes x-rotate {
                 0% {

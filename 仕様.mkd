@@ -18,6 +18,15 @@ divの様なタグですが、flex(横並び)となります。
 </box>
 ```
 
+h1~h6代替えタグ t1~t6
+h1と同じスタイルですが、SEOには影響しません。
+
+```html
+<t1>見出し</t1>
+```
+
+
+
 
 ## 現状サポート 属性
 
@@ -77,6 +86,47 @@ css:{CSSのproperty名}="{値}"
 
 ```html
 <p css:color="blue">blue</p>
+```
+
+br属性
+テキストの量が要素を超えたときに、自動で折り返します。
+
+```html
+<p br>hogehogehogepeiaerrrrrrrrrrrrrrrrrrrrrrrrrrrrr</p>
+<p BR>hogehogehogepeiaerrrrrrrrrrrrrrrrrrrrrrrrrrrrr</p>
+```
+
+markdown属性
+markdown式の文章をhtmlに変換します。
+このパースは簡易的(基本的な構文はサポート)な物です。
+marked.js等やフレームワーク固有のやり方をおススメします。
+
+```html
+<div markdown>
+# Hello HTMLX!
+## XXX!
+### AAA
+#### BBB
+##### CCC
+###### DDD
+
+[twitter](https://twitter.com/macl2189)
+![Liberluna_icon](https://liberluna.github.io/_astro/liberluna-logo.902d590c.svg)
+
+**hello**  
+*world*
+--back--
+    
+---
+___
+***
+
+`inline`
+
+```
+code
+```
+</div>
 ```
 
 #### ToDo
