@@ -156,8 +156,6 @@ function HTMLX_compile() {
 
     
 
-
-
 }
 
 function HTMLX_init() {
@@ -244,8 +242,8 @@ function HTMLX_init() {
                 border-radius: 50%
             }
 
-            [] {
-                
+            [topmost] {
+                z-index: 199999999;
             }
         </style>
     `; // 後でminify
