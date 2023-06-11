@@ -153,6 +153,11 @@ function HTMLX_compile() {
     for (let i = 0; i < markdowns.length; i++) {
         markdowns[i].innerHTML = convertMark(markdowns[i].innerHTML)
     }
+
+    
+
+
+
 }
 
 function HTMLX_init() {
@@ -237,6 +242,10 @@ function HTMLX_init() {
 
             [circle] {
                 border-radius: 50%
+            }
+
+            [] {
+                
             }
         </style>
     `; // 後でminify
